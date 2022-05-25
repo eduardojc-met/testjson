@@ -16,34 +16,40 @@ pipeline {
     }
  
 
-    stage('Check json') {
+    stage('yeison') {
       
       steps {
         script{
 
 
-def json = readJSON file: 'package.json'             
+def json = readJSON file: 'exmaple2.json'             
 json.each { myData ->
-   // myData.name.each {nameActual ->
-   myData.name.each {nameActual ->
-   bat echo "${nameActual}"
-        /*  if(nameActual.value == "backend") {
+ 
+ def nameActual=myData.projectName.toString()
+
+if(nameActual == "backend") {
             
-            def archivoconf=myData.stepsFile.value
+            def archivoconf=myData.stepsFile.toString()
+echo "${archivoconf}"
+def pipelineB = load archivoconf
+           
+bat "IF not exist backend (mkdir backend)"
 
-            //aquí o está el archivo en el mismo repo o habría que descargarlo de otro, en ese caso habría que ver tb donde lo descarga
-            //suponiendo que está en el mismo repo
-            build job: "../ruta-de-archivoconf/backend-pipeline-conf", wait: true
+dir("/backend") {
+pipelineB.test()
+}
 
-
-
-           }*/
-    }
+           }
+       
+  
 
         }
-      }
-    }
+  }
+   
 
 
+
+}
+}
 }
 }
