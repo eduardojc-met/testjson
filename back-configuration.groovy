@@ -7,8 +7,7 @@ def test() {
      //   IBM_SECRET_ACCESS_KEY = credentials('ibmkey')
     //}
  
- 
-  agent any
+
  
   stages {
  
