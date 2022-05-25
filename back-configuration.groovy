@@ -18,7 +18,7 @@ def test() {
     stage('Deploying App to Kubernetes') {
      
 	
-               writeYaml file: 'ocemix2.txt', data: "keloke"
+               writeYaml file: 'x.txt', data: "xx"
 
         
             
