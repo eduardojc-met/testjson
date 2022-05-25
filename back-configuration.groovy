@@ -1,11 +1,8 @@
 
 def test() {
-stage('mkdir') {
-  script{
-        bat 'mkdir backtest'}
-}
 
-  dir("/backtest") {
+
+ 
     stage('Checkout Source') {
       
     
@@ -23,12 +20,12 @@ stage('mkdir') {
 	echo "estoyyyyyy"
                writeYaml file: 'ocemi', data: "keloke"
 
-         
+         bat "dir"
             
       }
 
  
-  }
+  
 
 
 }
