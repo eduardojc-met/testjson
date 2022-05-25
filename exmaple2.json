@@ -1,7 +1,7 @@
 [
     {
         "projectName":"backend",
-        "stepsFile":"back-configuration"
+        "stepsFile":"back-configuration.groovy"
     },
     {
         "projectName":"backend2",
