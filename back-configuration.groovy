@@ -4,32 +4,14 @@ def test() {
  
     stage('Checkout Source') {
       
-      steps {
+      
         git 'https://github.com/eduardojc-met/pocdeployment.git'
-      }
+      
     }
  
  
  
     
-
-    stage('Deploying App to Kubernetes') {
-      steps {
-        script {
-
-	
-               writeYaml file: 'kelokeeeeeeeeeeeee', data: "keloke"
-
-         
-             }
-           
-
-
-
-
-      
-        }
-      }
     
 
  
