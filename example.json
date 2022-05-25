@@ -1,0 +1,14 @@
+[
+  {
+    "stepClass": "testing",
+    "stepDetails": [
+      {
+        "command": "echo \"test\""
+      },
+      {
+        "command": "echo \"test1\""
+      }
+    ]
+  }
+
+]

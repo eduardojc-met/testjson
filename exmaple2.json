@@ -1,0 +1,6 @@
+[
+    {
+        "projectName":"backend",
+        "stepsFile":"backend-pipeline-conf"
+    }
+]

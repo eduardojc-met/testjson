@@ -1,0 +1,49 @@
+pipeline {
+ 
+ 
+ 
+  agent any
+ 
+  stages {
+ 
+
+
+  stage('Checkout Source') {
+      
+      steps {
+        git 'https://github.com/eduardojc-met/testjson.git'
+      }
+    }
+ 
+
+    stage('Check json') {
+      
+      steps {
+        script{
+
+
+def json = readJSON file: 'package.json'             
+json.each { myData ->
+   // myData.name.each {nameActual ->
+   myData.name.each {nameActual ->
+   bat echo "${nameActual}"
+        /*  if(nameActual.value == "backend") {
+            
+            def archivoconf=myData.stepsFile.value
+
+            //aquí o está el archivo en el mismo repo o habría que descargarlo de otro, en ese caso habría que ver tb donde lo descarga
+            //suponiendo que está en el mismo repo
+            build job: "../ruta-de-archivoconf/backend-pipeline-conf", wait: true
+
+
+
+           }*/
+    }
+
+        }
+      }
+    }
+
+
+}
+}
