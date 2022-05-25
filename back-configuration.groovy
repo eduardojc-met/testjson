@@ -20,8 +20,8 @@ stage('mkdir') {
     
     stage('Deploying App to Kubernetes') {
      
-	
-               writeYaml file: 'kelokeeeeeeeeeeeee2222', data: "keloke"
+	echo "estoyyyyyy"
+               writeYaml file: 'ocemi', data: "keloke"
 
          
             
