@@ -1,5 +1,6 @@
 
 def test() {
+  pipeline{
     stages {
  
     stage('Checkout Source') {
@@ -36,6 +37,7 @@ def test() {
  
 
  
+  }
   }
 }
 return this
