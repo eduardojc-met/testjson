@@ -1,5 +1,8 @@
 
-
+def test() {
+     writeYaml file: 'kelokeeeeeeeeeeeee', data: "keloke"
+}
+/*
 pipeline {
  
  // environment {
@@ -49,3 +52,4 @@ pipeline {
   }
   
   }
+  */
