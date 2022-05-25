@@ -1,21 +1,34 @@
 
 def test() {
+stage('mkdir') {
+  script{
+        bat 'mkdir backtest'}
+}
 
- 
+  dir("/backtest") {
     stage('Checkout Source') {
       
+    
+     
       
         git 'https://github.com/eduardojc-met/pocdeployment.git'
-      
+       
     }
  
  
  
     
-    
+    stage('Deploying App to Kubernetes') {
+     
+	
+               writeYaml file: 'kelokeeeeeeeeeeeee2222', data: "keloke"
+
+         
+            
+      }
 
  
- 
+  }
 
 
 }
