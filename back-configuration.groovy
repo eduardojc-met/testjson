@@ -2,6 +2,7 @@
 def test() {
      writeYaml file: 'kelokeeeeeeeeeeeee', data: "keloke"
 }
+return this
 /*
 pipeline {
  
