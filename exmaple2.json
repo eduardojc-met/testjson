@@ -1,7 +1,7 @@
 [
     {
         "projectName":"backend",
-        "stepsFile":"backend-pipeline-conf"
+        "stepsFile":"back-configuration"
     },
     {
         "projectName":"backend2",
