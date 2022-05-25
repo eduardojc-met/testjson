@@ -17,10 +17,10 @@ def test() {
     
     stage('Deploying App to Kubernetes') {
      
-	echo "estoyyyyyy"
+	
                writeYaml file: 'ocemix2.txt', data: "keloke"
 
-         bat "dir"
+        
             
       }
 
