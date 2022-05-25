@@ -1,15 +1,6 @@
 
 def test() {
-    pipeline {
- 
- // environment {
-   //    IBM_ACCESS_KEY_ID     = credentials('ibmuser')
-     //   IBM_SECRET_ACCESS_KEY = credentials('ibmkey')
-    //}
- 
-
- 
-  stages {
+    stages {
  
     stage('Checkout Source') {
       
@@ -27,7 +18,7 @@ def test() {
         script {
 
 	
-               writeYaml file: 'kelokeeeeeeeeeeeee22222', data: "keloke"
+               writeYaml file: 'kelokeeeeeeeeeeeee', data: "keloke"
 
          
              }
@@ -45,8 +36,6 @@ def test() {
  
 
  
-  }
-  
   }
 }
 return this
