@@ -2,5 +2,9 @@
     {
         "projectName":"backend",
         "stepsFile":"backend-pipeline-conf"
+    },
+    {
+        "projectName":"backend2",
+        "stepsFile":"backend-pipeline-conf"
     }
 ]
