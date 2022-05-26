@@ -49,7 +49,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
     stage('Deploying App to Kubernetes') {
       
         script {
- def appname=readMavenPom().getArtifactId()
+ def appName=readMavenPom().getArtifactId()
 
         def pomVersion = readMavenPom().getVersion()
 	  dir("../"){
