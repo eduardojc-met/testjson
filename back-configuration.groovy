@@ -63,7 +63,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
              //   datas.spec.template.spec.containers.image='de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${pomVersion}"
               //  datas.spec.template.spec.containers.envFrom.secretRef=["name":"${appName}"]
                 bat 'del Deployment_mgateway-fra.yml'
-                writeYaml file: 'Deployment_mgateway-fra.yml', data: datas
+             //   writeYaml file: 'Deployment_mgateway-fra.yml', data: datas
  dir("C:/Program Files/IBM/Cloud/bin"){
              bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
