@@ -53,7 +53,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 
         def pomVersion = readMavenPom().getVersion()
 	  dir("../"){
-
+/*
               def datas = readYaml file:"Deployment_mgateway-fra.yml"
                datas.metadata["name"]="${appName}"+'-test'
                datas.metadata.labels["run"]="${appName}"+'-test'
@@ -70,6 +70,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
            bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9mkf09cf7vh8tmu0
  '''}
              //   bat 'kubectl apply -f back.yaml --namespace=develop'
+             */
   }
           
         
