@@ -97,8 +97,8 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
                 writeYaml file: 'Ingress_mgateway-fra.yml', data: ingress
 
 
-
-
+	def secret = readYaml file:"Secret_mgateway-fra.yml"
+	secret.metadata["name"]= "${appName}"+'-test'
 
 
 
