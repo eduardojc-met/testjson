@@ -71,8 +71,8 @@ datas.spec.template.spec.containers[0][envFrom][1]=["name":"${appName}"]
 
  def service = readYaml file:"Service_mgateway-fra.yml"
  service.metadata["name"]="${appName}"+'-test'
-service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test']
-service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"meta.helm.sh/release-namespace":"develop"]
+//service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test']
+//service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"meta.helm.sh/release-namespace":"develop"]
 
  // service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
 
