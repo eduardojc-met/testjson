@@ -24,7 +24,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
         
             
       }
-
+/*
 stage('Create & push image'){
 
 script{
@@ -44,7 +44,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 
  }
 
-
+*/
 
     stage('Deploying App to Kubernetes') {
       
@@ -55,13 +55,14 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 	  dir("../"){
        def datas = readYaml file:"Deployment_mgateway-fra.yml"
         datas.metadata["name"]="${appName}"+'-test'
+         datas.metadata.labels["run"]="${appName}"+'-test'
+          datas.spec.selector.matchLabels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test' ]
          bat 'del Deployment_mgateway-fra.yml'
          writeYaml file: 'Deployment_mgateway-fra.yml', data: datas
 /*
              
               
-               datas.metadata.labels["run"]="${appName}"+'-test'
-               datas.spec.selector.matchLabels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test' ]
+              
                datas.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'develop','run':"${appName}"+'-test' ]
                 datas.spec.template.spec.containers["name"]="${appName}"+'-test'
              //   datas.spec.template.spec.containers.image='de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${pomVersion}"
