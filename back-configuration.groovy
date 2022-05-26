@@ -85,8 +85,8 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
 
 		def ingress = readYaml file:"Ingress_mgateway-fra.yml"
                 	ingress.metadata["name"]= "${appName}"+'-test'
-          		service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test',"helm.sh/chart":"${appName}"+'-test',"run":"${appName}"+'-test']
-
+          		ingress.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test',"helm.sh/chart":"${appName}"+'-test',"run":"${appName}"+'-test']
+              ingress.spec.tls[0]["hosts"]=["${appName}"+'-test'+".auto.cross.dev.scf-hq.com"]
               
               
               bat 'del Ingress_mgateway-fra.yml'
