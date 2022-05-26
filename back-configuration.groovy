@@ -82,10 +82,10 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
   
 
 
-/*
+
 		def ingress = readYaml file:"Ingress_mgateway-fra.yml"
                 	ingress.metadata["name"]= "${appName}"+'-test'
-          		service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test',]
+          		service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test',"helm.sh/chart":"${appName}"+'-test',"run":"${appName}"+'-test']
 
               
               
@@ -93,7 +93,7 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
                 writeYaml file: 'Ingress_mgateway-fra.yml', data: ingress
 
 
-*/
+
 
 
 
