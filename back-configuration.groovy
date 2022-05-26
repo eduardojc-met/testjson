@@ -60,7 +60,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
         datas.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'develop','run':"${appName}"+'-test' ]
          datas.spec.template.spec.containers[0]["name"]="${appName}"
          datas.spec.template.spec.containers[0]["image"]='de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${pomVersion}"
-datas.spec.template.spec.containers[0][envFrom][1]=["name":"${appName}"]        
+datas.spec.template.spec.containers[0]["envFrom"][1]=["name":"${appName}"]        
          bat 'del Deployment_mgateway-fra.yml'
          writeYaml file: 'Deployment_mgateway-fra.yml', data: datas
 
@@ -69,7 +69,7 @@ datas.spec.template.spec.containers[0][envFrom][1]=["name":"${appName}"]
 
 
 
-  datas = readYaml file:"Service_mgateway-fra.yml"
+ // datas = readYaml file:"Service_mgateway-fra.yml"
 // service.metadata["name"]="${appName}"+'-test'
 //service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test']
 //service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"meta.helm.sh/release-namespace":"develop"]
