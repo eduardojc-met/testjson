@@ -47,7 +47,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 
 
     stage('Deploying App to Kubernetes') {
-      steps {
+      
         script {
  def appname=readMavenPom().getArtifactId()
 
@@ -64,16 +64,16 @@ dir("C:/Program Files/IBM/Cloud/bin"){
                 datas[0].spec.template.spec.template.spec.containers.envFrom.secretRef=["name":"${appName}"]
                 bat 'del Deployment_mgateway-fra.yml'
                 writeYaml file: 'Deployment_mgateway-fra.yml', data: datas[0]
-
-             //   bat 'kubectl apply -f back.yaml --namespace=develop'
-  }
-          
-       /*  dir("C:/Program Files/IBM/Cloud/bin"){
+ dir("C:/Program Files/IBM/Cloud/bin"){
              bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
            bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9mkf09cf7vh8tmu0
  '''}
-           */
+             //   bat 'kubectl apply -f back.yaml --namespace=develop'
+  }
+          
+        
+           
             
                   
             
@@ -83,7 +83,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
           
       
         }
-      }
+      
     }
 
 
