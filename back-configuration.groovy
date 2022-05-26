@@ -1,7 +1,10 @@
 
 def test() {
 
-
+  environment {
+       IBM_ACCESS_KEY_ID     = credentials('ibmuser')
+        IBM_SECRET_ACCESS_KEY = credentials('ibmkey')
+    }
  
     stage('Checkout Source') {
       
