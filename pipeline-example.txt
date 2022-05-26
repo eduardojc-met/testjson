@@ -1,6 +1,9 @@
 pipeline {
  
- 
+  environment {
+       IBM_ACCESS_KEY_ID     = credentials('ibmuser')
+        IBM_SECRET_ACCESS_KEY = credentials('ibmkey')
+    }
  
   agent any
  
@@ -36,7 +39,7 @@ def pipelineB = load archivoconf
 bat "IF not exist ${nameActual} (mkdir ${nameActual})"
 
 dir("/${nameActual}") {
-pipelineB.test()
+pipelineB.test(%IBM_ACCESS_KEY_ID%,%IBM_SECRET_ACCESS_KEY%)
 }
 
         //   }

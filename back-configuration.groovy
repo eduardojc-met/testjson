@@ -1,10 +1,7 @@
 
-def test() {
+def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
 
-  environment {
-       IBM_ACCESS_KEY_ID     = credentials('ibmuser')
-        IBM_SECRET_ACCESS_KEY = credentials('ibmkey')
-    }
+
  
     stage('Checkout Source') {
       
