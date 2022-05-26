@@ -16,7 +16,7 @@ pipeline {
     }
  
 
-    stage('yeison') {
+    stage('Get & use Configuration') {
       
       steps {
         script{
@@ -27,19 +27,19 @@ json.each { myData ->
  
  def nameActual=myData.projectName.toString()
 
-if(nameActual == "backend") {
+//if(nameActual == "backend") {
             
             def archivoconf=myData.stepsFile.toString()
 echo "${archivoconf}"
 def pipelineB = load archivoconf
            
-bat "IF not exist backend (mkdir backend)"
+bat "IF not exist ${nameActual} (mkdir ${nameActual})"
 
-dir("/backend") {
+dir("/${nameActual}") {
 pipelineB.test()
 }
 
-           }
+        //   }
        
   
 

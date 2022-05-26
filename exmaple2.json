@@ -2,9 +2,5 @@
     {
         "projectName":"backend",
         "stepsFile":"back-configuration.groovy"
-    },
-    {
-        "projectName":"backend2",
-        "stepsFile":"backend-pipeline-conf"
     }
 ]
