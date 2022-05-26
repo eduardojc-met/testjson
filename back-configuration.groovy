@@ -99,7 +99,8 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
 
 	def secret = readYaml file:"Secret_mgateway-fra.yml"
 	secret.metadata["name"]= "${appName}"+'-test'
-
+ bat 'del Secret_mgateway-fra.yml'
+ writeYaml file: 'Secret_mgateway-fra.yml', data: service
 
 
 
