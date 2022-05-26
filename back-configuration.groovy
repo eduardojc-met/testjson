@@ -71,20 +71,29 @@ datas.spec.template.spec.containers[0][envFrom][1]=["name":"${appName}"]
 
  def service = readYaml file:"Service_mgateway-fra.yml"
  service.metadata["name"]="${appName}"+'-test'
-   service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"scfhq-cross-mgateway-fra"]
-              service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"meta.helm.sh/release-namespace":"develop"]
+service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test']
+service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"meta.helm.sh/release-namespace":"develop"]
+
+ // service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
+
+
+  bat 'del Service_mgateway-fra.yml'
+  writeYaml file: 'Service_mgateway-fra.yml', data: service
+  
+
+
+/*
+		def ingress = readYaml file:"Ingress_mgateway-fra.yml"
+                	ingress.metadata["name"]= "${appName}"+'-test'
+          		service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test',]
+
               
-               service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
               
-             
-                bat 'del Service_mgateway-fra.yml'
-                writeYaml file: 'Service_mgateway-fra.yml', data: service
-               
+              bat 'del Ingress_mgateway-fra.yml'
+                writeYaml file: 'Ingress_mgateway-fra.yml', data: ingress
 
 
-
-
-
+*/
 
 
 
