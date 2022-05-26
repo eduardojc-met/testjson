@@ -25,7 +25,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
             
       }
 
- stage('Create & push image'){
+stage('Create & push image'){
 
 script{
   def appVersion=readMavenPom().getVersion()
@@ -44,10 +44,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 
  }
 
-stage('test'){
 
-
-}
 
     stage('Deploying App to Kubernetes') {
       steps {
