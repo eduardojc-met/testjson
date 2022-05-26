@@ -8,7 +8,7 @@ def test() {
     
      
       
-        git 'https://github.com/eduardojc-met/pocdeployment.git'
+        git 'https://github.com/eduardojc-met/test-micros.git'
        
     }
  
