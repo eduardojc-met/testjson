@@ -45,64 +45,51 @@ dir("C:/Program Files/IBM/Cloud/bin"){
  }
 
 stage('test'){
-  dir("../"){
-bat "dir"
-  }
+
 
 }
-/*
+
     stage('Deploying App to Kubernetes') {
       steps {
         script {
+ def appname=readMavenPom().getArtifactId()
 
-	
-            def appname=readMavenPom().getArtifactId()
-            
-            def packageJSON = readJSON file: 'package.json'
-        def packageJSONVersion = packageJSON.version 
         def pomVersion = readMavenPom().getVersion()
-             dir("src/main/docker/backend") {
-            
-              def datas = readYaml file:"back.yaml"
-               datas[0].metadata.labels=['io.kompose.service': "${appname}"+'-bff']
-               
-               
-               
-               datas[0].metadata["name"]="${appname}"+'-bff'
-               datas[0].spec.selector.matchLabels=['io.kompose.service': "${appname}"+'-bff']
-               datas[0].spec.template.spec.containers[0]["name"]="${appname}"+'-bff'
-                datas[0].spec.template.spec.containers[0]["image"]='de.icr.io/devops-tools/'+"${appname}"+'-bff:'+"${pomVersion}"
-               
-                datas[0].spec.template.metadata.labels=['io.kompose.service': "${appname}"+'-bff']
-              
-              
-              datas[1].metadata.labels=['io.kompose.service': "${appname}"+'-bff']
-              datas[1].metadata["name"]="${appname}"+'-bff'
-               datas[1].spec.selector=['io.kompose.service': "${appname}"+'-bff']
-              
+	  dir("../"){
+
+              def datas = readYaml file:"Deployment_mgateway-fra.yml"
+               datas.metadata["name"]="${appName}"+'-test'
+               datas.metadata.labels["run"]="${appName}"+'-test'
+               datas[0].spec.selector.matchLabels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test' ]
+               datas[0].spec.template.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'develop','run':"${appName}"+'-test' ]
+                datas[0].spec.template.spec.template.spec.containers.name="${appName}"+'-test'
+                datas[0].spec.template.spec.template.spec.containers.image='de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${pomVersion}"
+                datas[0].spec.template.spec.template.spec.containers.envFrom.secretRef=["name":"${appName}"]
                 bat 'del back.yaml'
                 writeYaml file: 'back.yaml', data: datas[0]
-              
-             }
-        
-            dir("C:/Program Files/IBM/Cloud/bin"){
+ dir("C:/Program Files/IBM/Cloud/bin"){
              bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
            bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9mkf09cf7vh8tmu0
  '''}
+             //   bat 'kubectl apply -f back.yaml --namespace=develop'
+  }
+          
+        
+           
             
-                    dir("src/main/docker/backend") {
-            bat 'kubectl apply -f back.yaml --namespace=develop'
-            bat 'kubectl apply -f serviceback.yaml --namespace=develop'
+                  
+            
+        
          
-                }
+                
           
       
         }
       }
     }
 
-  */
+
 
 
 }
