@@ -54,9 +54,10 @@ dir("C:/Program Files/IBM/Cloud/bin"){
         def pomVersion = readMavenPom().getVersion()
 	  dir("../"){
        def datas = readYaml file:"Deployment_mgateway-fra.yml"
+        datas.metadata["name"]="${appName}"+'-test'
 /*
              
-               datas.metadata["name"]="${appName}"+'-test'
+              
                datas.metadata.labels["run"]="${appName}"+'-test'
                datas.spec.selector.matchLabels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test' ]
                datas.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'develop','run':"${appName}"+'-test' ]
