@@ -36,8 +36,7 @@ bat 'docker tag quarkus/mgateway de.icr.io/devops-tools/'+"${appName}"+'-test:'+
 dir("C:/Program Files/IBM/Cloud/bin"){
              bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
-           bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9mkf09cf7vh8tmu0
- '''}
+         }
  bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
 }
 
@@ -46,9 +45,10 @@ dir("C:/Program Files/IBM/Cloud/bin"){
  }
 
 stage('test'){
-dir("../"){
-  bat "dir"
-}
+  dir("../"){
+bat "dir"
+  }
+
 }
 /*
     stage('Deploying App to Kubernetes') {

@@ -1,0 +1,24 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: scfhq-cross-mgateway-fra
+  namespace: develop
+  labels:
+    app.kubernetes.io/instance: scfhq-cross-mgateway-fra
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: scfhq-cross-mgateway-fra
+  annotations:
+    meta.helm.sh/release-name: scfhq-cross-mgateway-fra
+    meta.helm.sh/release-namespace: develop
+spec:
+  ports:
+    - name: https
+      protocol: TCP
+      port: 8443
+      targetPort: 8443
+  selector:
+    environment: develop
+    run: scfhq-cross-mgateway-fra
+  type: ClusterIP
+  sessionAffinity: None
+  internalTrafficPolicy: Cluster

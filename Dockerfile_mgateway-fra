@@ -1,0 +1,17 @@
+####
+# docker build -f /Volumes/CWork/0--Original/jhipster/middle-santander/dockerconf/Dockerfile_GQuarkus_2 -t cross-mgatewayq .
+###
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.5
+
+WORKDIR /work/
+RUN chown 1001 /work \
+&& chmod "g+rwX" /work \
+&& chown 1001:root /work
+
+COPY --chown=1001:root scfhq-cross-mgateway-fra-*-runner /work/application
+
+EXPOSE 8443
+EXPOSE 8080
+USER 1001
+
+CMD ["./application", "-Dquarkus.http.host=0.0.0.0"]

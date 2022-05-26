@@ -1,0 +1,181 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: scfhq-cross-mgateway-fra
+  namespace: develop
+  generation: 9
+  labels:
+    environment: develop
+    run: scfhq-cross-mgateway-fra
+  annotations:
+    deployment.kubernetes.io/revision: '3'
+  managedFields:
+    - manager: kubectl-client-side-apply
+      operation: Update
+      apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+          f:labels:
+            .: {}
+            f:environment: {}
+            f:run: {}
+        f:spec:
+          f:progressDeadlineSeconds: {}
+          f:revisionHistoryLimit: {}
+          f:selector: {}
+          f:strategy:
+            f:rollingUpdate:
+              .: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+            f:type: {}
+          f:template:
+            f:metadata:
+              f:annotations:
+                .: {}
+                f:rollme: {}
+              f:labels:
+                .: {}
+                f:app.kubernetes.io/component: {}
+                f:app.kubernetes.io/instance: {}
+                f:environment: {}
+                f:run: {}
+            f:spec:
+              f:containers:
+                k:{"name":"scfhq-cross-mgateway-fra"}:
+                  .: {}
+                  f:env:
+                    .: {}
+                    k:{"name":"JAVA_OPTS"}:
+                      .: {}
+                      f:name: {}
+                      f:value: {}
+                  f:envFrom: {}
+                  f:image: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:ports:
+                    .: {}
+                    k:{"containerPort":8443,"protocol":"TCP"}:
+                      .: {}
+                      f:containerPort: {}
+                      f:name: {}
+                      f:protocol: {}
+                  f:resources:
+                    .: {}
+                    f:limits:
+                      .: {}
+                      f:cpu: {}
+                      f:memory: {}
+                    f:requests:
+                      .: {}
+                      f:cpu: {}
+                      f:memory: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+              f:dnsPolicy: {}
+              f:imagePullSecrets:
+                .: {}
+                k:{"name":"ibm-registry-apikey"}: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:deployment.kubernetes.io/revision: {}
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            .: {}
+            k:{"type":"Available"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Progressing"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+          f:observedGeneration: {}
+          f:readyReplicas: {}
+          f:replicas: {}
+          f:updatedReplicas: {}
+      subresource: status
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: scfhq-cross-mgateway-fra
+      app.kubernetes.io/instance: scfhq-cross-mgateway-fra
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: scfhq-cross-mgateway-fra
+        app.kubernetes.io/instance: scfhq-cross-mgateway-fra
+        environment: develop
+        run: scfhq-cross-mgateway-fra
+      annotations:
+        rollme: BzIa0
+    spec:
+      containers:
+        - name: scfhq-cross-mgateway-fra
+          image: de.icr.io/devops-tools/scfhq-cross-mgateway-fra:1.0.0
+          ports:
+            - name: http
+              containerPort: 8443
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: environment
+            - secretRef:
+                name: scfhq-cross-mgateway-fra
+          env:
+            - name: JAVA_OPTS
+              value: '-server -Xms256m -Xmx512m -Xmn64m -Xss2m'
+          resources:
+            limits:
+              cpu: 150m
+              memory: 900Mi
+            requests:
+              cpu: 15m
+              memory: 90Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      imagePullSecrets:
+        - name: ibm-registry-apikey
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+status:
+  observedGeneration: 9
+  replicas: 1
+  updatedReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1

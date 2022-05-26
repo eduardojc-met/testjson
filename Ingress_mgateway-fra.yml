@@ -1,0 +1,86 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: scfhq-cross-mgateway-fra
+  namespace: develop
+  generation: 2
+  labels:
+    app.kubernetes.io/instance: scfhq-cross-mgateway-fra
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: scfhq-cross-mgateway-fra
+    helm.sh/chart: scfhq-cross-mgateway-fra
+    run: scfhq-cross-mgateway-fra
+  annotations:
+    ingress.bluemix.net/ALB-ID: private-iks-k8s-nginx
+    ingress.kubernetes.io/secure-backends: 'true'
+    ingress.kubernetes.io/ssl-passthrough: 'false'
+    kubernetes.io/ingress.class: private-iks-k8s-nginx
+    meta.helm.sh/release-name: scfhq-cross-mgateway-fra
+    meta.helm.sh/release-namespace: develop
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+  managedFields:
+    - manager: dashboard
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:ingress.bluemix.net/ALB-ID: {}
+            f:ingress.kubernetes.io/secure-backends: {}
+            f:ingress.kubernetes.io/ssl-passthrough: {}
+            f:kubernetes.io/ingress.class: {}
+            f:meta.helm.sh/release-name: {}
+            f:meta.helm.sh/release-namespace: {}
+            f:nginx.ingress.kubernetes.io/backend-protocol: {}
+          f:labels:
+            .: {}
+            f:app.kubernetes.io/instance: {}
+            f:app.kubernetes.io/managed-by: {}
+            f:app.kubernetes.io/name: {}
+            f:helm.sh/chart: {}
+            f:run: {}
+        f:spec:
+          f:rules: {}
+          f:tls: {}
+    - manager: nginx-ingress-controller
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:loadBalancer:
+            f:ingress: {}
+      subresource: status
+spec:
+  tls:
+    - hosts:
+        - mgateway-fra.auto.cross.dev.scf-hq.com
+      secretName: scf-hq.com
+  rules:
+    - host: >-
+        mgateway-fra.scfhq-crossdev01-391a523e0203d3683790f242c9079785-0001.eu-de.containers.appdomain.cloud
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: scfhq-cross-mgateway-fra
+                port:
+                  number: 8443
+    - host: mgateway-fra.auto.cross.dev.scf-hq.com
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: scfhq-cross-mgateway-fra
+                port:
+                  number: 8443
+status:
+  loadBalancer:
+    ingress:
+      - hostname: 61c1bd58-eu-de.lb.appdomain.cloud
