@@ -60,7 +60,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
         datas.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'develop','run':"${appName}"+'-test' ]
          datas.spec.template.spec.containers[0]["name"]="${appName}"
          datas.spec.template.spec.containers[0]["image"]='de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${pomVersion}"
-datas.spec.template.spec.containers[0]["envFrom"]["secretRef"][0]=["name":"${appName}"]        
+datas.spec.template.spec.containers[0]["envFrom"][0][0]=["name":"${appName}"]        
          bat 'del Deployment_mgateway-fra.yml'
          writeYaml file: 'Deployment_mgateway-fra.yml', data: datas
 
