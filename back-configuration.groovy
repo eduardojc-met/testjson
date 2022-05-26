@@ -63,19 +63,47 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 datas.spec.template.spec.containers[0][envFrom][1]=["name":"${appName}"]        
          bat 'del Deployment_mgateway-fra.yml'
          writeYaml file: 'Deployment_mgateway-fra.yml', data: datas
-/*
+
+
+
+
+
+
+ def service = readYaml file:"Service_mgateway-fra.yml"
+ service.metadata["name"]="${appName}"+'-test'
+   service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"scfhq-cross-mgateway-fra"]
+              service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"meta.helm.sh/release-namespace":"develop"]
+              
+               service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
+              
              
-              
-              
-               
-             //   
-              //  
+                bat 'del Service_mgateway-fra.yml'
+                writeYaml file: 'Service_mgateway-fra.yml', data: service
                
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ 
  dir("C:/Program Files/IBM/Cloud/bin"){
              bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
