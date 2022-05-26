@@ -87,8 +87,11 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
                 	ingress.metadata["name"]= "${appName}"+'-test'
           		ingress.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test',"helm.sh/chart":"${appName}"+'-test',"run":"${appName}"+'-test']
               ingress.spec.tls[0]["hosts"]=["${appName}"+'-test'+".auto.cross.dev.scf-hq.com"]
+         //si falla es por este de abajo
               ingress.spec.rules[0]["host"]=["${appName}"+'-test'+".scfhq-crossdev01-391a523e0203d3683790f242c9079785-0001.eu-de.containers.appdomain.cloud"]
-             ingress.spec.rules[0].http.paths.backend.service[0]["image"]="${appName}"+'-test'
+             ingress.spec.rules[0].http.paths.backend.service[0]["name"]="${appName}"+'-test'
+              ingress.spec.rules[1]["host"]=["${appName}"+'-test'+".scfhq-crossdev01-391a523e0203d3683790f242c9079785-0001.eu-de.containers.appdomain.cloud"]
+             ingress.spec.rules[1].http.paths.backend.service[0]["name"]="${appName}"+'-test'
               
               bat 'del Ingress_mgateway-fra.yml'
                 writeYaml file: 'Ingress_mgateway-fra.yml', data: ingress
