@@ -79,9 +79,9 @@ datas.spec.template.spec.containers[0]["envFrom"][1]["secretRef"]=["name":"${app
 def service = readYaml file:"Service_mgateway-nld.yml"
  service.metadata["name"]="${appName}"+'-test'
 service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test']
-service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"meta.helm.sh/release-namespace":"develop"]
+service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"meta.helm.sh/release-namespace":"microgateway"]
 
-service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
+service.spec.selector=['environment': 'microgateway','run':"${appName}"+'-test']
 
 
  bat 'del Service_mgateway-nld.yml'
