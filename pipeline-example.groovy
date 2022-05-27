@@ -52,8 +52,7 @@ pipelineB.test("%IBM_ACCESS_KEY_ID%","%IBM_SECRET_ACCESS_KEY%")
    
 
 
-
-}
-}
-}
-}
+    }
+      }
+        }
+          }
