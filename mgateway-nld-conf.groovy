@@ -13,7 +13,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
     }
  
  
- /*
+
     
     stage('Generating app') {
      script{
@@ -48,7 +48,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 
 
  }
-*/
+
 
 
     stage('Deploying App to Kubernetes') {
