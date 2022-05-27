@@ -34,8 +34,13 @@ script{
 bat 'docker tag quarkus/mgateway de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
 
 dir("C:/Program Files/IBM/Cloud/bin"){
-             bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
-           bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
+             
+
+              bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
+            bat label: 'Install ibmcloud ks plugin', script: '''echo n | ibmcloud.exe plugin install container-service ''' 
+            bat label: 'Install ibmcloud cr plugin', script: '''echo n | ibmcloud.exe  plugin install container-registry ''' 
+            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
+           
          }
  bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
 }
