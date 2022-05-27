@@ -3,6 +3,7 @@ pipeline {
   environment {
        IBM_ACCESS_KEY_ID     = credentials('ibmuser')
         IBM_SECRET_ACCESS_KEY = credentials('ibmkey')
+        projectName=credentials('project-name')
     }
  
   agent any
@@ -25,12 +26,12 @@ pipeline {
         script{
 
 
-def json = readJSON file: 'exmaple2.json'             
+def json = readJSON file: 'configurations.json'             
 json.each { myData ->
  
  def nameActual=myData.projectName.toString()
 
-if(nameActual == "backend") {
+if(nameActual == "${project-name}") {
             
             def archivoconf=myData.stepsFile.toString()
 
