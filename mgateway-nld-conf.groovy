@@ -62,7 +62,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
         datas.metadata["name"]="${appName}"+'-test'
          datas.metadata.labels["run"]="${appName}"+'-test'
           datas.spec.selector.matchLabels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test' ]
-        datas.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'develop','run':"${appName}"+'-test' ]
+        datas.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'microgateway','run':"${appName}"+'-test' ]
          datas.spec.template.spec.containers[0]["name"]="${appName}"+'-test'
          datas.spec.template.spec.containers[0]["image"]='de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${pomVersion}"
 datas.spec.template.spec.containers[0]["envFrom"][0]["configMapRef"]=["name":"${appName}"+'-test']        
@@ -128,12 +128,12 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
  dir("C:/Program Files/IBM/Cloud/bin"){
              bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
-           bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9mkf09cf7vh8tmu0
+           bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9jff0n7t4elurev0
  '''}
-              bat 'kubectl apply -f Deployment_mgateway-nld.yml --namespace=develop'
-               bat 'kubectl apply -f Service_mgateway-nld.yml --namespace=develop'
-               bat 'kubectl apply -f Ingress_mgateway-nld.yml --namespace=develop'
-               bat 'kubectl apply -f Secret_mgateway-nld.yml --namespace=develop'
+              bat 'kubectl apply -f Deployment_mgateway-nld.yml --namespace=microgateway'
+               bat 'kubectl apply -f Service_mgateway-nld.yml --namespace=microgateway'
+               bat 'kubectl apply -f Ingress_mgateway-nld.yml --namespace=microgateway'
+               bat 'kubectl apply -f Secret_mgateway-nld.yml --namespace=microgateway'
              
   }
           
