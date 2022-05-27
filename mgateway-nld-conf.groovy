@@ -65,7 +65,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
         datas.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'microgateway','run':"${appName}"+'-test' ]
          datas.spec.template.spec.containers[0]["name"]="${appName}"+'-test'
          datas.spec.template.spec.containers[0]["image"]='de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${pomVersion}"
-datas.spec.template.spec.containers[0]["envFrom"][0]["configMapRef"]=["name":"${appName}"+'-test']        
+     
 datas.spec.template.spec.containers[0]["envFrom"][1]["secretRef"]=["name":"${appName}"+'-test']        
 
          bat 'del Deployment_mgateway-nld.yml'
