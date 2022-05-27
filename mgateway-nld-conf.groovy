@@ -130,11 +130,9 @@ service.spec.selector=['environment': 'microgateway','run':"${appName}"+'-test']
            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
           bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9jff0n7t4elurev0
  '''}
-             bat 'kubectl apply -f Deployment_mgateway-nld.yml --namespace=microgateway'
-               bat label: 'Install ibmcloud ks plugin', script: '''echo n | ibmcloud.exe plugin install container-service ''' 
-            bat label: 'Install ibmcloud cr plugin', script: '''echo n | ibmcloud.exe  plugin install container-registry ''' 
-           
-              
+            
+            bat 'kubectl apply -f Deployment_mgateway-nld.yml --namespace=microgateway'
+             
                bat 'kubectl apply -f Service_mgateway-nld.yml --namespace=microgateway'
                bat 'kubectl apply -f Ingress_mgateway-nld.yml --namespace=microgateway'
                bat 'kubectl apply -f Secret_mgateway-nld.yml --namespace=microgateway'
