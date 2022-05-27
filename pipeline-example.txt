@@ -3,7 +3,7 @@ pipeline {
   environment {
        IBM_ACCESS_KEY_ID     = credentials('ibmuser')
         IBM_SECRET_ACCESS_KEY = credentials('ibmkey')
-        projectName=credentials('project-name')
+        project=credentials('project-name')
     }
  
   agent any
@@ -31,7 +31,7 @@ json.each { myData ->
  
  def nameActual=myData.projectName.toString()
 
-if(nameActual == "${project-name}") {
+if(nameActual == "${project}") {
             
             def archivoconf=myData.stepsFile.toString()
 
