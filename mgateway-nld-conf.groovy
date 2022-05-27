@@ -13,7 +13,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
     }
  
  
- 
+ /*
     
     stage('Generating app') {
      script{
@@ -45,11 +45,11 @@ dir("C:/Program Files/IBM/Cloud/bin"){
  bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
 }
 
-
+*
 
  }
 
-
+*/
 
     stage('Deploying App to Kubernetes') {
       
@@ -93,7 +93,7 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
 		def ingress = readYaml file:"Ingress_mgateway-nld.yml"
                 	ingress.metadata["name"]= "${appName}"+'-test'
           		ingress.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test',"helm.sh/chart":"${appName}"+'-test',"run":"${appName}"+'-test']
-              ingress.spec.tls[0]["hosts"]=["${appName}"+'-test'+".auto.cross.dev.scf-hq.com"]
+              ingress.spec.tls[0]["hosts"][0]=["${appName}"+'-test'+".auto.cross.dev.scf-hq.com"]
          //si falla es por este de abajo
              // ingress.spec.rules[0]["host"]=["${appName}"+'-test'+".scfhq-crossdev01-391a523e0203d3683790f242c9079785-0001.eu-de.containers.appdomain.cloud"]
              ingress.spec.rules[0].http.paths.backend.service[0]["name"]="${appName}"+'-test'
@@ -120,7 +120,7 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
 
 
 
-
+/*
 
 
 
@@ -134,7 +134,7 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
                bat 'kubectl apply -f Service_mgateway-nld.yml --namespace=microgateway'
                bat 'kubectl apply -f Ingress_mgateway-nld.yml --namespace=microgateway'
                bat 'kubectl apply -f Secret_mgateway-nld.yml --namespace=microgateway'
-            
+      */      
   }
           
         
