@@ -97,7 +97,7 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
          //si falla es por este de abajo
             //  ingress.spec.rules[0]["host"]=["${appName}"+'-test'+".scfhq-crossdev01-391a523e0203d3683790f242c9079785-0001.eu-de.containers.appdomain.cloud"]
              ingress.spec.rules[0].http.paths.backend.service[0]["name"]="${appName}"+'-test'
-              ingress.spec.rules[1]["host"]=["${appName}"+'-test'+".auto.cross.dev.scf-hq.com"]
+         //     ingress.spec.rules[1]["host"]=["${appName}"+'-test'+".auto.cross.dev.scf-hq.com"]
              ingress.spec.rules[1].http.paths.backend.service[0]["name"]="${appName}"+'-test'
               
               bat 'del Ingress_mgateway-nld.yml'
