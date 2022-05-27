@@ -2,7 +2,7 @@ kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
   name: scfhq-cross-mgateway-nld
-  namespace: develop
+  namespace: microgateway
   generation: 2
   labels:
     app.kubernetes.io/instance: scfhq-cross-mgateway-nld

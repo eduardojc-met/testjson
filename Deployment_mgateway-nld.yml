@@ -2,7 +2,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: scfhq-cross-mgateway-nld
-  namespace: develop
+  namespace: microgateway
   generation: 9
   labels:
     environment: microgateway
@@ -129,7 +129,7 @@ spec:
       labels:
         app.kubernetes.io/component: scfhq-cross-mgateway-nld
         app.kubernetes.io/instance: scfhq-cross-mgateway-nld
-        environment: develop
+        environment: microgateway
         run: scfhq-cross-mgateway-nld
       annotations:
         rollme: BzIa0
