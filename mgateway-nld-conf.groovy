@@ -13,7 +13,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
     }
  
  
- 
+ /*
     
     stage('Generating app') {
      script{
@@ -48,7 +48,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 
 
  }
-
+*/
 
 
     stage('Deploying App to Kubernetes') {
@@ -58,7 +58,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 
         def pomVersion = readMavenPom().getVersion()
 	  dir("../"){
-       def datas = readYaml file:"Deployment_mgateway-fra.yml"
+       def datas = readYaml file:"Deployment_mgateway-nld.yml"
         datas.metadata["name"]="${appName}"+'-test'
          datas.metadata.labels["run"]="${appName}"+'-test'
           datas.spec.selector.matchLabels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test' ]
@@ -68,15 +68,15 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 datas.spec.template.spec.containers[0]["envFrom"][0]["configMapRef"]=["name":"${appName}"+'-test']        
 datas.spec.template.spec.containers[0]["envFrom"][1]["secretRef"]=["name":"${appName}"+'-test']        
 
-         bat 'del Deployment_mgateway-fra.yml'
-         writeYaml file: 'Deployment_mgateway-fra.yml', data: datas
+         bat 'del Deployment_mgateway-nld.yml'
+         writeYaml file: 'Deployment_mgateway-nld.yml', data: datas
 
 
 
 
 
 
-def service = readYaml file:"Service_mgateway-fra.yml"
+def service = readYaml file:"Service_mgateway-nld.yml"
  service.metadata["name"]="${appName}"+'-test'
 service.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test']
 service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"meta.helm.sh/release-namespace":"develop"]
@@ -84,13 +84,13 @@ service.metadata.annotations=["meta.helm.sh/release-name":"${appName}"+'-test',"
 service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
 
 
- bat 'del Service_mgateway-fra.yml'
- writeYaml file: 'Service_mgateway-fra.yml', data: service
+ bat 'del Service_mgateway-nld.yml'
+ writeYaml file: 'Service_mgateway-nld.yml', data: service
   
 
 
 
-		def ingress = readYaml file:"Ingress_mgateway-fra.yml"
+		def ingress = readYaml file:"Ingress_mgateway-nld.yml"
                 	ingress.metadata["name"]= "${appName}"+'-test'
           		ingress.metadata.labels=['app.kubernetes.io/instance': "${appName}"+'-test',"app.kubernetes.io/managed-by":"Helm","app.kubernetes.io/name":"${appName}"+'-test',"helm.sh/chart":"${appName}"+'-test',"run":"${appName}"+'-test']
               ingress.spec.tls[0]["hosts"]=["${appName}"+'-test'+".auto.cross.dev.scf-hq.com"]
@@ -100,14 +100,14 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
               ingress.spec.rules[1]["host"]=["${appName}"+'-test'+".auto.cross.dev.scf-hq.com"]
              ingress.spec.rules[1].http.paths.backend.service[0]["name"]="${appName}"+'-test'
               
-              bat 'del Ingress_mgateway-fra.yml'
-                writeYaml file: 'Ingress_mgateway-fra.yml', data: ingress
+              bat 'del Ingress_mgateway-nld.yml'
+                writeYaml file: 'Ingress_mgateway-nld.yml', data: ingress
 
 
-	def secret = readYaml file:"Secret_mgateway-fra.yml"
+	def secret = readYaml file:"Secret_mgateway-nld.yml"
 	secret.metadata["name"]= "${appName}"+'-test'
- bat 'del Secret_mgateway-fra.yml'
- writeYaml file: 'Secret_mgateway-fra.yml', data: secret
+ bat 'del Secret_mgateway-nld.yml'
+ writeYaml file: 'Secret_mgateway-nld.yml', data: secret
 
 
 
@@ -130,10 +130,10 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
            bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9mkf09cf7vh8tmu0
  '''}
-              bat 'kubectl apply -f Deployment_mgateway-fra.yml --namespace=develop'
-               bat 'kubectl apply -f Service_mgateway-fra.yml --namespace=develop'
-               bat 'kubectl apply -f Ingress_mgateway-fra.yml --namespace=develop'
-               bat 'kubectl apply -f Secret_mgateway-fra.yml --namespace=develop'
+              bat 'kubectl apply -f Deployment_mgateway-nld.yml --namespace=develop'
+               bat 'kubectl apply -f Service_mgateway-nld.yml --namespace=develop'
+               bat 'kubectl apply -f Ingress_mgateway-nld.yml --namespace=develop'
+               bat 'kubectl apply -f Secret_mgateway-nld.yml --namespace=develop'
              
   }
           

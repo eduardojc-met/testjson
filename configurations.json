@@ -1,6 +1,6 @@
 [
     {
-        "projectName":"mgateway-fra",
-        "stepsFile":"mgateway-fra-conf.groovy"
+        "projectName":"mgateway-nld",
+        "stepsFile":"mgateway-nld-conf.groovy"
     }
 ]

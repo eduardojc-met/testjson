@@ -1,14 +1,14 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: scfhq-cross-mgateway-fra
+  name: scfhq-cross-mgateway-nld
   namespace: develop
   labels:
-    app.kubernetes.io/instance: scfhq-cross-mgateway-fra
+    app.kubernetes.io/instance: scfhq-cross-mgateway-nld
     app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: scfhq-cross-mgateway-fra
+    app.kubernetes.io/name: scfhq-cross-mgateway-nld
   annotations:
-    meta.helm.sh/release-name: scfhq-cross-mgateway-fra
+    meta.helm.sh/release-name: scfhq-cross-mgateway-nld
     meta.helm.sh/release-namespace: develop
 spec:
   ports:
@@ -18,7 +18,7 @@ spec:
       targetPort: 8443
   selector:
     environment: develop
-    run: scfhq-cross-mgateway-fra
+    run: scfhq-cross-mgateway-nld
   type: ClusterIP
   sessionAffinity: None
   internalTrafficPolicy: Cluster
