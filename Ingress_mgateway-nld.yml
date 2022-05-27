@@ -16,7 +16,7 @@ metadata:
     ingress.kubernetes.io/ssl-passthrough: 'false'
     kubernetes.io/ingress.class: private-iks-k8s-nginx
     meta.helm.sh/release-name: scfhq-cross-mgateway-nld
-    meta.helm.sh/release-namespace: develop
+    meta.helm.sh/release-namespace: microgateway
     nginx.ingress.kubernetes.io/backend-protocol: HTTPS
   managedFields:
     - manager: dashboard
