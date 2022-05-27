@@ -17,7 +17,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
     
     stage('Generating app') {
      script{
-    //  bat 'mvnw package -Dnative -Dquarkus.container-image.group=santander -X -Dquarkus.native.container-build=true -Dquarkus.native.resources.includes=*.p12,reflection-config.json,cacerts -Dquarkus.native.container-runtime=docker -Dquarkus.native.debug.enabled=true'
+      bat 'mvnw package -Dnative -Dquarkus.container-image.group=santander -X -Dquarkus.native.container-build=true -Dquarkus.native.resources.includes=*.p12,reflection-config.json,cacerts -Dquarkus.native.container-runtime=docker -Dquarkus.native.debug.enabled=true'
 
      }
 	
@@ -125,10 +125,10 @@ service.spec.selector=['environment': 'develop','run':"${appName}"+'-test']
            bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
            bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9mkf09cf7vh8tmu0
  '''}
-             //   bat 'kubectl apply -f Deployment_mgateway-fra.yml --namespace=develop'
-             //   bat 'kubectl apply -f Service_mgateway-fra.yml --namespace=develop'
-             //   bat 'kubectl apply -f Ingress_mgateway-fra.yml --namespace=develop'
-             //   bat 'kubectl apply -f Secret_mgateway-fra.yml --namespace=develop'
+              bat 'kubectl apply -f Deployment_mgateway-fra.yml --namespace=develop'
+               bat 'kubectl apply -f Service_mgateway-fra.yml --namespace=develop'
+               bat 'kubectl apply -f Ingress_mgateway-fra.yml --namespace=develop'
+               bat 'kubectl apply -f Secret_mgateway-fra.yml --namespace=develop'
              
   }
           
