@@ -5,7 +5,7 @@ metadata:
   namespace: develop
   generation: 9
   labels:
-    environment: develop
+    environment: microgateway
     run: scfhq-cross-mgateway-nld
   annotations:
     deployment.kubernetes.io/revision: '3'
