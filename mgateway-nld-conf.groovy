@@ -76,6 +76,7 @@ docker_push_id = packageJSON[0].Id.toString().replace("sha256:","")
        def datas = readYaml file:"Deployment_mgateway-nld.yml"
         datas.metadata["name"]="${appName}"+'-test'
          datas.metadata.labels["run"]="${appName}"+'-test'
+        echo "${docker_push_id}"
          datas.metadata.annontations["last-image-push-id"]=docker_push_id
           
        
