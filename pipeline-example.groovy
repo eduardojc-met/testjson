@@ -15,7 +15,7 @@ pipeline {
   stage('Checkout Source') {
       
       steps {
-        git 'https://github.com/eduardojc-met/testjson.git'
+        git //here the json repository
       }
     }
  
