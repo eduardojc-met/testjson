@@ -1,7 +1,9 @@
 
 def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
 
-
+ environment {
+      git_commit=''
+    }
  
     stage('Checkout Source') {
       
