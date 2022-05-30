@@ -52,12 +52,12 @@ dir("C:/Program Files/IBM/Cloud/bin"){
            
          }
  bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
-  bat 'docker inspect '+"${appName}"+'-test:'+"${appVersion}"+' > dockerpushid.json'
-       def packageJSON = readJSON file: 'dockerpushid.json' 
-        docker_push_id = packageJSON[0].Id.toString().replace("sha256:","")
+//  bat 'docker inspect '+"${appName}"+'-test:'+"${appVersion}"+' > dockerpushid.json'
+  //     def packageJSON = readJSON file: 'dockerpushid.json' 
+    //    docker_push_id = packageJSON[0].Id.toString().replace("sha256:","")
     
 
-		bat 'del dockerpushid.json'
+//		bat 'del dockerpushid.json'
 }
 
 
