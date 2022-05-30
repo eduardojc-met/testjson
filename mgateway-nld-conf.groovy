@@ -2,8 +2,8 @@
 def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
 
  environment {
-      git_commit=''
-       docker_push_id=''
+      git_commit='123'
+       docker_push_id='123'
     }
  
     stage('Checkout Source') {
@@ -22,7 +22,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
     }
  
  
-
+/*
     
     stage('Generating app') {
      script{
@@ -52,7 +52,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
            
          }
  bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
-  bat 'docker inspect test1 > dockerpushid.json'
+  bat 'docker inspect '+"${appName}"+'-test:'+"${appVersion}"+' > dockerpushid.json'
        def packageJSON = readJSON file: 'dockerpushid.json' 
         docker_push_id = packageJSON[0].Id.toString().replace("sha256:","")
     
@@ -62,7 +62,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
 
 
 
- }
+ }*/
 
 
 
@@ -76,6 +76,11 @@ dir("C:/Program Files/IBM/Cloud/bin"){
        def datas = readYaml file:"Deployment_mgateway-nld.yml"
         datas.metadata["name"]="${appName}"+'-test'
          datas.metadata.labels["run"]="${appName}"+'-test'
+         datas.metadata.annontations["last-image-push-id"]=docker_push_id
+          
+       
+         datas.metadata.annontations["last-commit-sha"]=git_commit
+
           datas.spec.selector.matchLabels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test' ]
         datas.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'microgateway','run':"${appName}"+'-test' ]
          datas.spec.template.spec.containers[0]["name"]="${appName}"+'-test'
