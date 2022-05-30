@@ -11,7 +11,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
       script{
       def git_command=  git 'https://github.com/eduardojc-met/test-micros.git'
       
-           git_commit= d["GIT_COMMIT"]
+           git_commit= git_command["GIT_COMMIT"]
            echo "${git_commit}"
           
       }
