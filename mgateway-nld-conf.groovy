@@ -2,8 +2,8 @@
 def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
 
  environment {
-      git_commit='123'
-       docker_push_id='123'
+    //  git_commit='123'
+      // docker_push_id='123'
     }
  
     stage('Checkout Source') {
