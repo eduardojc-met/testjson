@@ -51,7 +51,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
             bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
            
          }
- bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
+ //bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
  bat 'docker inspect de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"+' > dockerpushid.json'
  def packageJSON = readJSON file: 'dockerpushid.json' 
 docker_push_id = packageJSON[0].Id.toString().replace("sha256:","")
