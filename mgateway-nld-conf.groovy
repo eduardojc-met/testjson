@@ -26,7 +26,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
     
     stage('Generating app') {
      script{
-    //  bat 'mvn package -Dnative -Dquarkus.container-image.group=santander -X -Dquarkus.native.container-build=true -Dquarkus.native.resources.includes=*.p12,reflection-config.json,cacerts -Dquarkus.native.container-runtime=docker -Dquarkus.native.debug.enabled=true -DskipTests'
+      bat 'mvn package -Dnative -Dquarkus.container-image.group=santander -X -Dquarkus.native.container-build=true -Dquarkus.native.resources.includes=*.p12,reflection-config.json,cacerts -Dquarkus.native.container-runtime=docker -Dquarkus.native.debug.enabled=true -DskipTests'
 
      }
 	
@@ -51,7 +51,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
             bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
            
          }
- //bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
+ bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
  bat 'docker inspect de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"+' > dockerpushid.json'
  def packageJSON = readJSON file: 'dockerpushid.json' 
 docker_push_id = packageJSON[0].Id.toString().replace("sha256:","")
@@ -140,7 +140,7 @@ service.spec.selector=['environment': 'microgateway','run':"${appName}"+'-test']
 
 
 
-/*
+
  
  dir("C:/Program Files/IBM/Cloud/bin"){
              bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
@@ -153,7 +153,7 @@ service.spec.selector=['environment': 'microgateway','run':"${appName}"+'-test']
                bat 'kubectl apply -f Service_mgateway-nld.yml --namespace=microgateway'
                bat 'kubectl apply -f Ingress_mgateway-nld.yml --namespace=microgateway'
                bat 'kubectl apply -f Secret_mgateway-nld.yml --namespace=microgateway'
-           */
+           
   }
           
         
