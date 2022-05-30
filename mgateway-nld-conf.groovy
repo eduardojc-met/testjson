@@ -139,7 +139,7 @@ service.spec.selector=['environment': 'microgateway','run':"${appName}"+'-test']
 
 
 
-
+/*
  
  dir("C:/Program Files/IBM/Cloud/bin"){
              bat label: 'Login to ibmcloud', script: '''ibmcloud.exe login -u %IBM_ACCESS_KEY_ID% -p %IBM_SECRET_ACCESS_KEY% -r eu-de ''' 
@@ -152,7 +152,7 @@ service.spec.selector=['environment': 'microgateway','run':"${appName}"+'-test']
                bat 'kubectl apply -f Service_mgateway-nld.yml --namespace=microgateway'
                bat 'kubectl apply -f Ingress_mgateway-nld.yml --namespace=microgateway'
                bat 'kubectl apply -f Secret_mgateway-nld.yml --namespace=microgateway'
-           
+           */
   }
           
         
