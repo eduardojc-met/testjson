@@ -77,10 +77,10 @@ docker_push_id = packageJSON[0].Id.toString().replace("sha256:","")
         datas.metadata["name"]="${appName}"+'-test'
          datas.metadata.labels["run"]="${appName}"+'-test'
         echo "${docker_push_id}"
-         datas.metadata.annontations["last-image-push-id"]=docker_push_id
+         datas.metadata.annotations["last-image-push-id"]=docker_push_id
           
        
-        datas.metadata.annontations["last-commit-sha"]=git_commit
+        datas.metadata.annotations["last-commit-sha"]=git_commit
 
           datas.spec.selector.matchLabels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test' ]
         datas.spec.template.metadata.labels=['app.kubernetes.io/component': "${appName}"+'-test', 'app.kubernetes.io/instance' : "${appName}"+'-test', 'environment':'microgateway','run':"${appName}"+'-test' ]
