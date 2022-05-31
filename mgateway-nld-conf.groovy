@@ -24,7 +24,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
  
 
     
-    stage('Generating app') {
+   /* stage('Generating app') {
      script{
       bat 'mvn package -Dnative -Dquarkus.container-image.group=santander -X -Dquarkus.native.container-build=true -Dquarkus.native.resources.includes=*.p12,reflection-config.json,cacerts -Dquarkus.native.container-runtime=docker -Dquarkus.native.debug.enabled=true -DskipTests'
 
@@ -32,7 +32,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
 	
         
             
-      }
+      }*/
 
 stage('Create & push image'){
 
@@ -51,12 +51,12 @@ dir("C:/Program Files/IBM/Cloud/bin"){
             bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
            
          }
- bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
+ bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test_edu:'+"${appVersion}"
 
  def full_id = bat(script:"docker inspect --format={{.RepoDigests}} de.icr.io/devops-tools/"+"${appName}"+'-test:'+"${appVersion}", returnStdout: true) 
-echo "${full_id}"
-docker_push_id = full_id.toString().replace('de.icr.io/devops-tools/'+"${appName}"+'-test@sha256',"")
-    
+
+docker_push_id = full_id.toString().split('sha256:')
+   echo "${docker_push_id.toString()}" 
 
 }
 
@@ -148,11 +148,11 @@ service.spec.selector=['environment': 'microgateway','run':"${appName}"+'-test']
           bat label: 'Configuring kubernetes', script: '''ibmcloud.exe ks cluster config -c c7pb9jff0n7t4elurev0
  '''}
             
-            bat 'kubectl apply -f Deployment_mgateway-nld.yml --namespace=microgateway'
+     //       bat 'kubectl apply -f Deployment_mgateway-nld.yml --namespace=microgateway'
              
-               bat 'kubectl apply -f Service_mgateway-nld.yml --namespace=microgateway'
-               bat 'kubectl apply -f Ingress_mgateway-nld.yml --namespace=microgateway'
-               bat 'kubectl apply -f Secret_mgateway-nld.yml --namespace=microgateway'
+      //         bat 'kubectl apply -f Service_mgateway-nld.yml --namespace=microgateway'
+       //        bat 'kubectl apply -f Ingress_mgateway-nld.yml --namespace=microgateway'
+       //        bat 'kubectl apply -f Secret_mgateway-nld.yml --namespace=microgateway'
            
   }
           
