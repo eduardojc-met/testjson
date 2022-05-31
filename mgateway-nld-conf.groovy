@@ -15,7 +15,7 @@ def test(String IBM_ACCESS_KEY_ID,String IBM_SECRET_ACCESS_KEY) {
       def git_command=  git "https://github.com/eduardojc-met/test-micros.git"
       
            git_commit= git_command["GIT_COMMIT"]
-           echo "${git_commit}"
+           
           
       }
        
@@ -53,8 +53,8 @@ dir("C:/Program Files/IBM/Cloud/bin"){
          }
  bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
 
- def full_id = bat "docker inspect --format={{.RepoDigests}} de.icr.io/devops-tools/"+"${appName}"+'-test:'+"${appVersion}"
-
+ def full_id = bat(script:"docker inspect --format={{.RepoDigests}} de.icr.io/devops-tools/"+"${appName}"+'-test:'+"${appVersion}", returnStdout: true) 
+echo "${full_id}"
 docker_push_id = full_id.toString().replace('de.icr.io/devops-tools/'+"${appName}"+'-test@sha256',"")
     
 
@@ -76,7 +76,7 @@ docker_push_id = full_id.toString().replace('de.icr.io/devops-tools/'+"${appName
        def datas = readYaml file:"Deployment_mgateway-nld.yml"
         datas.metadata["name"]="${appName}"+'-test'
          datas.metadata.labels["run"]="${appName}"+'-test'
-        echo "${docker_push_id}"
+        
          datas.metadata.annotations["last-image-push-id"]=docker_push_id
           
        
