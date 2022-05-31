@@ -56,7 +56,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
  def full_id = bat(script:"docker inspect --format={{.RepoDigests}} de.icr.io/devops-tools/"+"${appName}"+'-test:'+"${appVersion}", returnStdout: true) 
 
 docker_push_id = full_id.toString().split('sha256:')
-   echo "${docker_push_id.toString()}" 
+   echo "${docker_push_id[1].toString()}" 
 
 }
 
