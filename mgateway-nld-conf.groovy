@@ -40,7 +40,7 @@ script{
   def appVersion=readMavenPom().getVersion()
   def appName=readMavenPom().getArtifactId()
   bat 'docker build -f src/main/docker/Dockerfile.native -t quarkus/mgateway .'
-bat 'docker tag quarkus/mgateway de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
+bat 'docker tag quarkus/mgateway de.icr.io/devops-tools/'+"${appName}"+'-test_edu:'+"${appVersion}"
 
 dir("C:/Program Files/IBM/Cloud/bin"){
              
