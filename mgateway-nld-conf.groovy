@@ -40,7 +40,7 @@ script{
   def appVersion=readMavenPom().getVersion()
   def appName=readMavenPom().getArtifactId()
   bat 'docker build -f src/main/docker/Dockerfile.native -t quarkus/mgateway .'
-bat 'docker tag quarkus/mgateway de.icr.io/devops-tools/'+"${appName}"+'-test_edu:'+"${appVersion}"
+bat 'docker tag quarkus/mgateway de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
 
 dir("C:/Program Files/IBM/Cloud/bin"){
              
@@ -51,7 +51,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
             bat label: 'Login to ibm cr', script: '''ibmcloud.exe  cr login '''
            
          }
- bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test_edu:'+"${appVersion}"
+ bat 'docker push de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"
 
  def full_id = bat(script:"docker inspect --format={{.RepoDigests}} de.icr.io/devops-tools/"+"${appName}"+'-test:'+"${appVersion}", returnStdout: true) 
 def id_arr=full_id.toString().split('sha256:')
