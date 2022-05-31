@@ -55,7 +55,7 @@ dir("C:/Program Files/IBM/Cloud/bin"){
  docker inspect --format='{{.RepoDigests}}'
  bat 'docker inspect --format="{{.RepoDigests}}" de.icr.io/devops-tools/'+"${appName}"+'-test:'+"${appVersion}"+' > dockerpushid.json'
  def packageJSON = readJSON file: 'dockerpushid.json' 
-docker_push_id = packageJSON[0].Id.toString().replace("${appName}"+'-test'+"@sha256","").replace("[","").replace("]","")
+docker_push_id = packageJSON[0].Id.toString().replace('de.icr.io/devops-tools/'+"${appName}"+'-test'+"@sha256","").replace("[","").replace("]","")
     
 
 	bat 'del dockerpushid.json'
